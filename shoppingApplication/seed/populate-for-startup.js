@@ -15,73 +15,73 @@ Product.remove({}, function(err){
 
 var products = [
     new Product({
-        imagePath   : '/images/underwear-green.png',
+        imagePath   : '/images/underwear-green.jpg',
         title       : 'Aqua Close Fit Brief',
         description : 'Ultra cotton tight fit andgrogynous briefs in aqua marine that hug your hips.',
         price       : 29.99
     }),
     new Product({
-        imagePath   : '/images/underwear-blue.png',
+        imagePath   : '/images/underwear-blue.jpg',
         title       : 'Aqua Close Fit Brief',
         description : 'Ultra cotton tight fit andgrogynous briefs in aqua marine that hug your hips.',
         price       : 79.99
     }),
     new Product({
-        imagePath   : '/images/underwear-black.png',
+        imagePath   : '/images/underwear-black.jpg',
         title       : 'Aqua Close Fit Brief',
         description : 'Ultra cotton tight fit andgrogynous briefs in aqua marine that hug your hips.',
         price       : 19.99
     }),
     new Product({
-        imagePath   : '/images/underwearprint-01.png',
+        imagePath   : '/images/underwearprint-01.jpg',
         title       : 'Aqua Close Fit Brief',
         description : 'Ultra cotton tight fit andgrogynous briefs in aqua marine that hug your hips.',
         price       : 19.99
     }),
     new Product({
-        imagePath   : '/images/underwearprint-02.png',
+        imagePath   : '/images/underwearprint-02.jpg',
         title       : 'Aqua Close Fit Brief',
         description : 'Ultra cotton tight fit andgrogynous briefs in aqua marine that hug your hips.',
         price       : 19.99
     }),
     new Product({
-        imagePath   : '/images/underwearprint-03.png',
+        imagePath   : '/images/underwearprint-03.jpg',
         title       : 'Aqua Close Fit Brief',
         description : 'Ultra cotton tight fit andgrogynous briefs in aqua marine that hug your hips.',
         price       : 19.99
     }),
     new Product({
-        imagePath   : '/images/underwearprint-04.png',
+        imagePath   : '/images/underwearprint-04.jpg',
         title       : 'Aqua Close Fit Brief',
         description : 'Ultra cotton tight fit andgrogynous briefs in aqua marine that hug your hips.',
         price       : 19.99
     }),
     new Product({
-        imagePath   : '/images/underwearprint-05.png',
+        imagePath   : '/images/underwearprint-05.jpg',
         title       : 'Aqua Close Fit Brief',
         description : 'Ultra cotton tight fit andgrogynous briefs in aqua marine that hug your hips.',
         price       : 19.99
     }),
     new Product({
-        imagePath   : '/images/underwearprint-06.png',
+        imagePath   : '/images/underwearprint-06.jpg',
         title       : 'Aqua Close Fit Brief',
         description : 'Ultra cotton tight fit andgrogynous briefs in aqua marine that hug your hips.',
         price       : 19.99
     }),
     new Product({
-        imagePath   : '/images/underwearprint-09.png',
+        imagePath   : '/images/underwearprint-09.jpg',
         title       : 'Aqua Close Fit Brief',
         description : 'Ultra cotton tight fit andgrogynous briefs in aqua marine that hug your hips.',
         price       : 19.99
     }),
     new Product({
-        imagePath   : '/images/underwearprint-08.png',
+        imagePath   : '/images/underwearprint-08.jpg',
         title       : 'Aqua Close Fit Brief',
         description : 'Ultra cotton tight fit andgrogynous briefs in aqua marine that hug your hips.',
         price       : 19.99
     }),
     new Product({
-        imagePath   : '/images/underwearprint-07.png',
+        imagePath   : '/images/underwearprint-07.jpg',
         title       : 'Aqua Close Fit Brief',
         description : 'Ultra cotton tight fit andgrogynous briefs in aqua marine that hug your hips.',
         price       : 19.99
@@ -103,7 +103,7 @@ for (var i = 0; i < products.length; i++){
     products[i].save(function(err, result) {
         if (i === products.length - 1){
           console.log("running");
-            mongoose.disconnect();
+            exit();
         }
     });
 }
@@ -111,5 +111,5 @@ for (var i = 0; i < products.length; i++){
 
 
 function exit() {
-
+mongoose.disconnect();
 }
