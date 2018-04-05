@@ -109,6 +109,7 @@ router.get('/checkout-success', ensureAuthenticated, function(req, res){
 
         var order = new Order({
           orderID   : payerId,
+          username  : 'admin@admin.com',
           address   : orderAddress,
           orderDate : date,
           shipping  : true
