@@ -2,7 +2,7 @@ var Product     = require('../models/product');
 var User        = require('../models/user');
 var Order        = require('../models/order');
 var mongoose    = require('mongoose');
-mongoose.connect('mongodb://localhost/shoppingApp');
+
 
 // Store number of tasks to be completed before disconnect.
 let completedTasks = 0;
@@ -51,67 +51,67 @@ var products = [
     }),
     new Product({
         imagePath   : '/images/underwear-blue.jpg',
-        title       : 'Aqua Close Fit Brief',
+        title       : 'Black Close Fit Brief',
         description : 'Ultra cotton tight fit andgrogynous briefs in aqua marine that hug your hips.',
         price       : 79.99
     }),
     new Product({
         imagePath   : '/images/underwear-black.jpg',
-        title       : 'Aqua Close Fit Brief',
+        title       : 'Blue Close Fit Brief',
         description : 'Ultra cotton tight fit andgrogynous briefs in aqua marine that hug your hips.',
         price       : 19.99
     }),
     new Product({
         imagePath   : '/images/underwearprint-01.jpg',
-        title       : 'Aqua Close Fit Brief',
+        title       : 'Red Cube Close Fit Brief',
         description : 'Ultra cotton tight fit andgrogynous briefs in aqua marine that hug your hips.',
         price       : 19.99
     }),
     new Product({
         imagePath   : '/images/underwearprint-02.jpg',
-        title       : 'Aqua Close Fit Brief',
+        title       : 'Alligator Close Fit Brief',
         description : 'Ultra cotton tight fit andgrogynous briefs in aqua marine that hug your hips.',
         price       : 19.99
     }),
     new Product({
         imagePath   : '/images/underwearprint-03.jpg',
-        title       : 'Aqua Close Fit Brief',
+        title       : 'Aqua Cube Close Fit Brief',
         description : 'Ultra cotton tight fit andgrogynous briefs in aqua marine that hug your hips.',
         price       : 19.99
     }),
     new Product({
         imagePath   : '/images/underwearprint-04.jpg',
-        title       : 'Aqua Close Fit Brief',
+        title       : 'Blue Cheetah Close Fit Brief',
         description : 'Ultra cotton tight fit andgrogynous briefs in aqua marine that hug your hips.',
         price       : 19.99
     }),
     new Product({
         imagePath   : '/images/underwearprint-05.jpg',
-        title       : 'Aqua Close Fit Brief',
+        title       : 'Purple Cube Close Fit Brief',
         description : 'Ultra cotton tight fit andgrogynous briefs in aqua marine that hug your hips.',
         price       : 19.99
     }),
     new Product({
         imagePath   : '/images/underwearprint-06.jpg',
-        title       : 'Aqua Close Fit Brief',
+        title       : 'Internet Print Close Fit Brief',
         description : 'Ultra cotton tight fit andgrogynous briefs in aqua marine that hug your hips.',
         price       : 19.99
     }),
     new Product({
         imagePath   : '/images/underwearprint-09.jpg',
-        title       : 'Aqua Close Fit Brief',
+        title       : 'Space Invaders Close Fit Brief',
         description : 'Ultra cotton tight fit andgrogynous briefs in aqua marine that hug your hips.',
         price       : 19.99
     }),
     new Product({
         imagePath   : '/images/underwearprint-08.jpg',
-        title       : 'Aqua Close Fit Brief',
+        title       : 'Zebra Print Close Fit Brief',
         description : 'Ultra cotton tight fit andgrogynous briefs in aqua marine that hug your hips.',
         price       : 19.99
     }),
     new Product({
         imagePath   : '/images/underwearprint-07.jpg',
-        title       : 'Aqua Close Fit Brief',
+        title       : ' Yellow Zebra Print Close Fit Brief',
         description : 'Ultra cotton tight fit andgrogynous briefs in aqua marine that hug your hips.',
         price       : 19.99
     })
@@ -136,7 +136,7 @@ function populateUsers() {
     var newUser = new User({
         username: 'admin@admin.com',
         password: 'admin',
-        fullname: 'Elizabeth Letourneau',
+        fullname: 'Elizabth Letourneau',
         admin: true
     });
 
