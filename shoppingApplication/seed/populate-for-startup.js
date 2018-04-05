@@ -53,13 +53,13 @@ var products = [
         imagePath   : '/images/underwear-blue.jpg',
         title       : 'Black Close Fit Brief',
         description : 'Ultra cotton tight fit andgrogynous briefs in aqua marine that hug your hips.',
-        price       : 79.99
+        price       : 29.99
     }),
     new Product({
         imagePath   : '/images/underwear-black.jpg',
         title       : 'Blue Close Fit Brief',
         description : 'Ultra cotton tight fit andgrogynous briefs in aqua marine that hug your hips.',
-        price       : 19.99
+        price       : 29.99
     }),
     new Product({
         imagePath   : '/images/underwearprint-01.jpg',
