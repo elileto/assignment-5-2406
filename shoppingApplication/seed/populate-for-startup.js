@@ -4,31 +4,43 @@ var Order        = require('../models/order');
 var mongoose    = require('mongoose');
 mongoose.connect('mongodb://localhost/shoppingApp');
 
-Product.remove({}, function(err){
-  //remove existing products documents
-  if(err) {
-    console.log('ERROR: Remove failed')
-    return
-  }
+// Store number of tasks to be completed before disconnect.
+let completedTasks = 0;
+const NUM_TASKS = 5;
+
+mongoose.connect('mongodb://localhost/shoppingApp', function (err) {
+    if (err) throw err;
+
+    // Remove products
+    Product.remove({}, (err) => {
+        if (err) throw err;
+        // When products remove, add new products
+        populateProducts();
+        console.log("done  removing products");
+        completedTasks++;
+        exit();
+    });
+
+    // Remove users
+    User.remove({}, (err) => {
+        if (err) throw err;
+        // When users removed, add new users
+        populateUsers();
+        console.log("done  removing users");
+        completedTasks++;
+        exit();
+    });
+
+    // Remove orders
+    Order.remove({}, (err) => {
+        if (err) throw err;
+
+        completedTasks++;
+        console.log("done  removing orders");
+        exit();
+    });
+
 });
-
-User.remove({}, function(err){
-  //remove existing products documents
-  if(err) {
-    console.log('ERROR: Remove failed')
-    return
-  }
-});
-
-Order.remove({}, function(err){
-  //remove existing products documents
-  if(err) {
-    console.log('ERROR: Remove failed')
-    return
-  }
-});
-
-
 
 var products = [
     new Product({
@@ -105,28 +117,45 @@ var products = [
     })
 ];
 
-var newUser = new User({
-    username    : 'admin@admin.com',
-    password    : 'admin',
-    fullname    : 'Elizabeth Letourneau',
-    admin       : true
-});
-User.createUser(newUser, function(err, user){
-    if(err) throw err;
-    console.log(user);
-});
 
-for (var i = 0; i < products.length; i++){
-    products[i].save(function(err, result) {
-        if (i === products.length - 1){
-        //  console.log("running");
-        //    exit();
-        }
+function populateProducts() {
+
+    // Save each product
+    for (let i = 0; i < products.length; i++) {
+        products[i].save(function (err, result) {
+            if (i === products.length - 1) {
+                completedTasks++;
+                console.log("done adding products");
+                exit();
+            }
+        });
+    }
+}
+
+function populateUsers() {
+    var newUser = new User({
+        username: 'admin@admin.com',
+        password: 'admin',
+        fullname: 'Elizabeth Letourneau',
+        admin: true
+    });
+
+    // Add the new user
+    User.createUser(newUser, function (err, user) {
+        if (err) throw err;
+
+        completedTasks++;
+        console.log("done adding users");
+        exit();
     });
 }
 
 
-
 function exit() {
-mongoose.disconnect();
+    // If the number of completed tasks equals the number of tasks, disconnect.
+    if (completedTasks === NUM_TASKS){
+      console.log("Quitting..");
+      mongoose.disconnect();
+
+    }
 }

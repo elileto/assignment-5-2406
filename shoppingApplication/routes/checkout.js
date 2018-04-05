@@ -60,20 +60,6 @@ router.post('/checkout-process', function(req, res){
   }
 }
 });
-
-
-/*var didPaymentSucceed = Math.random()
-    //FOR NOW
-    if (didPaymentSucceed >= 0.5){
-       //either of these two could work
-       //res.render('checkoutSuccess', {title: 'Successful', containerWrapper: 'container', userFirstName: req.user.fullname})
-       res.redirect(302, '/checkout/checkout-success')
-     }
-    else {
-       //either of these two could work
-       //res.render('checkoutCancel', {title: 'Successful', containerWrapper: 'container', userFirstName: req.user.fullname})
-       res.redirect(302, '/checkout/checkout-cancel')
-    } */
 });
 
 // GET checkout-success
@@ -102,15 +88,16 @@ router.get('/checkout-success', ensureAuthenticated, function(req, res){
       } else {
         console.log("Get Payment Response");
         console.log(JSON.stringify(payment));
-        let orderAddress = payment.payer.payer_info.shipping_address.line1 + ' '
-        + payment.payer.payer_info.shipping_address.city + ' ' + payment.payer.payer_info.shipping_address.city
+
+        let userAddress = payment.payer.payer_info.shipping_address.line1 + ' ' + payment.payer.payer_info.shipping_address.city
         + ' ' + payment.payer.payer_info.shipping_address.state + ' ' + payment.payer.payer_info.shipping_address.postal_code
+
         let date = payment.create_time
 
         var order = new Order({
           orderID   : payerId,
-          username  : 'admin@admin.com',
-          address   : orderAddress,
+          username  : req.user.username,
+          address   : userAddress,
           orderDate : date,
           shipping  : true
         });
@@ -120,10 +107,12 @@ router.get('/checkout-success', ensureAuthenticated, function(req, res){
       }
     });
 
-    // POST insert new product
-
-
     res.render('checkoutSuccess', {title: 'Successful', containerWrapper: 'container', userFirstName: req.user.fullname})
+    req.session.cart.totalPrice = 0;
+    req.session.cart.totalQty = 0;
+    req.session.cart.items = {};
+
+
 });
 
 // PAYMENT CANCEL
