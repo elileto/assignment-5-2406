@@ -5,6 +5,7 @@ var Order                   = require('../models/order');
 var paypal                  = require('paypal-rest-sdk');
 
 
+
 ////Paypal configuration
 paypal.configure({
   'mode': 'sandbox', //sandbox or live
@@ -52,21 +53,6 @@ router.post('/checkout-process', function(req, res){
   if(error){
     console.error(JSON.stringify(error));
   } else {
-  /*  // Capture HATEOAS links
-    payment.links.forEach(function(linkObj){
-      links[linkObj.rel] = {
-        href: linkObj.href,
-        method: linkObj.method
-      };
-    })
-
-    // If redirect url present, redirect user
-    if (links.hasOwnProperty('approval_url')){
-      res.redirect(payment.links['approval_url'].href);
-    } else {
-      console.error('no redirect URI present');
-    }
-  } */
   for (let i = 0; i < payment.links.length; i++){
     if(payment.links[i].rel === 'approval_url'){
       res.redirect(payment.links[i].href);
@@ -116,8 +102,25 @@ router.get('/checkout-success', ensureAuthenticated, function(req, res){
       } else {
         console.log("Get Payment Response");
         console.log(JSON.stringify(payment));
+        let orderAddress = payment.payer.payer_info.shipping_address.line1 + ' '
+        + payment.payer.payer_info.shipping_address.city + ' ' + payment.payer.payer_info.shipping_address.city
+        + ' ' + payment.payer.payer_info.shipping_address.state + ' ' + payment.payer.payer_info.shipping_address.postal_code
+        let date = payment.create_time
+
+        var order = new Order({
+          orderID   : payerId,
+          address   : orderAddress,
+          orderDate : date,
+          shipping  : true
+        });
+
+        order.save();
+        console.log(order);
       }
     });
+
+    // POST insert new product
+
 
     res.render('checkoutSuccess', {title: 'Successful', containerWrapper: 'container', userFirstName: req.user.fullname})
 });

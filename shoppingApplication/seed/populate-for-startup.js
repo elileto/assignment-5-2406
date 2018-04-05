@@ -1,16 +1,33 @@
 var Product     = require('../models/product');
 var User        = require('../models/user');
+var Order        = require('../models/order');
 var mongoose    = require('mongoose');
 mongoose.connect('mongodb://localhost/shoppingApp');
 
 Product.remove({}, function(err){
-  //remove existing cat documents
+  //remove existing products documents
   if(err) {
     console.log('ERROR: Remove failed')
     return
   }
-  //ALL CAT DOCUMENTS REMOVED
 });
+
+User.remove({}, function(err){
+  //remove existing products documents
+  if(err) {
+    console.log('ERROR: Remove failed')
+    return
+  }
+});
+
+Order.remove({}, function(err){
+  //remove existing products documents
+  if(err) {
+    console.log('ERROR: Remove failed')
+    return
+  }
+});
+
 
 
 var products = [
@@ -102,8 +119,8 @@ User.createUser(newUser, function(err, user){
 for (var i = 0; i < products.length; i++){
     products[i].save(function(err, result) {
         if (i === products.length - 1){
-          console.log("running");
-            exit();
+        //  console.log("running");
+        //    exit();
         }
     });
 }
